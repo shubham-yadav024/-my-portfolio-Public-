@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shubham Kumar Yadav | Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --p:#8B5CF6;--pl:#A78BFA;--pd:#6D28D9;
+  --glow:rgba(139,92,246,0.15);--glow2:rgba(139,92,246,0.08);
+  --bg:#080810;--bg2:#0F0F1A;--bg3:#161625;--bg4:#1E1E30;
+  --text:#F0EEF8;--text2:#A89EC4;--text3:#6B6488;
+  --border:rgba(139,92,246,0.18);--border2:rgba(139,92,246,0.35);
+  --green:#22C55E;--cyan:#06B6D4;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--p);border-radius:2px}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{position:fixed;top:0;left:0;width:280px;height:100vh;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:2.5rem 1.5rem;z-index:100;overflow-y:auto}
+.avatar-wrap{position:relative;margin-bottom:1.25rem}
+.avatar{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--pd),var(--cyan));display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:700;color:#fff;border:3px solid var(--border2)}
+.avatar-ring{position:absolute;inset:-5px;border-radius:50%;border:2px dashed rgba(139,92,246,0.3);animation:spin 12s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.status-badge{display:flex;align-items:center;gap:0.4rem;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:999px;padding:0.3rem 0.8rem;font-size:0.72rem;color:var(--green);margin-bottom:1.2rem}
+.status-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.sidebar-name{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:700;text-align:center;margin-bottom:0.3rem}
+.sidebar-role{font-size:0.82rem;color:var(--pl);text-align:center;margin-bottom:1.5rem;font-weight:500}
+.sidebar-info{width:100%;display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.8rem}
+.info-item{display:flex;align-items:center;gap:0.6rem;font-size:0.8rem;color:var(--text2);background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.55rem 0.8rem}
+.info-icon{font-size:0.9rem;flex-shrink:0}
+.info-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nav-links{width:100%;display:flex;flex-direction:column;gap:0.3rem;margin-bottom:1.5rem}
+.nav-link{display:flex;align-items:center;gap:0.75rem;padding:0.7rem 1rem;border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.88rem;font-weight:500;transition:all 0.2s;border:1px solid transparent}
+.nav-link:hover,.nav-link.active{background:var(--glow);border-color:var(--border2);color:var(--pl)}
+.nav-link .nav-icon{font-size:1rem;width:20px;text-align:center}
+.social-links{display:flex;gap:0.6rem}
+.social-btn{width:36px;height:36px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--text2);text-decoration:none;font-size:1rem;transition:all 0.2s}
+.social-btn:hover{background:var(--glow);border-color:var(--border2);color:var(--pl)}
+
+/* MAIN */
+.main{margin-left:280px;padding:0}
+.section{padding:4rem 3rem;min-height:100vh;border-bottom:1px solid var(--border)}
+.section:last-child{border-bottom:none}
+
+/* SECTION HEADER */
+.sec-eyebrow{font-size:0.75rem;font-weight:600;color:var(--pl);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.5rem}
+.sec-title{font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:800;margin-bottom:0.4rem;line-height:1.1}
+.sec-title span{color:var(--pl)}
+.sec-line{width:40px;height:3px;background:var(--p);border-radius:2px;margin-bottom:2.5rem}
+
+/* ABOUT / HERO */
+#about{display:flex;flex-direction:column;justify-content:center}
+.typing-wrap{margin-bottom:1rem}
+.typing-label{font-size:0.85rem;color:var(--text3);margin-bottom:0.4rem}
+.typing-text{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;color:var(--pl);min-height:2rem}
+.cursor{display:inline-block;width:2px;height:1.4rem;background:var(--pl);margin-left:2px;animation:blink 0.8s step-end infinite;vertical-align:middle}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.about-desc{color:var(--text2);line-height:1.85;font-size:0.95rem;max-width:620px;margin-bottom:2.5rem}
+
+.what-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem}
+.what-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.25rem;transition:all 0.2s}
+.what-card:hover{border-color:var(--border2);background:var(--glow2);transform:translateY(-2px)}
+.what-icon{font-size:1.6rem;margin-bottom:0.6rem}
+.what-title{font-size:0.9rem;font-weight:600;margin-bottom:0.3rem}
+.what-desc{font-size:0.8rem;color:var(--text2);line-height:1.5}
+
+.stats-row{display:flex;gap:1.5rem;flex-wrap:wrap}
+.stat-box{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1rem 1.5rem;text-align:center;flex:1;min-width:100px}
+.stat-n{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:800;color:var(--pl)}
+.stat-l{font-size:0.75rem;color:var(--text2);margin-top:0.2rem}
+
+/* RESUME */
+.resume-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.resume-col h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem}
+.resume-col h3 span{font-size:1.2rem}
+.timeline{position:relative;padding-left:1.5rem}
+.timeline::before{content:'';position:absolute;left:0;top:6px;bottom:0;width:2px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:1.5rem}
+.tl-dot{position:absolute;left:-1.9rem;top:5px;width:10px;height:10px;border-radius:50%;background:var(--p);border:2px solid var(--bg2)}
+.tl-year{font-size:0.72rem;color:var(--pl);font-weight:600;margin-bottom:0.2rem;text-transform:uppercase;letter-spacing:0.05em}
+.tl-title{font-size:0.92rem;font-weight:600;margin-bottom:0.15rem}
+.tl-sub{font-size:0.8rem;color:var(--text2)}
+.tl-desc{font-size:0.78rem;color:var(--text3);margin-top:0.3rem;line-height:1.5}
+
+.skill-bars{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem}
+.skill-bar-item{}
+.skill-bar-top{display:flex;justify-content:space-between;margin-bottom:0.4rem;font-size:0.82rem}
+.skill-bar-name{font-weight:500}
+.skill-bar-pct{color:var(--pl);font-weight:600}
+.skill-bar-track{height:6px;background:var(--bg4);border-radius:3px;overflow:hidden}
+.skill-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--pd),var(--pl));transition:width 1.5s ease}
+
+.dl-btn{display:inline-flex;align-items:center;gap:0.5rem;background:var(--p);color:#fff;border:none;padding:0.7rem 1.5rem;border-radius:8px;font-size:0.88rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.2s;margin-top:1.5rem}
+.dl-btn:hover{background:var(--pd);transform:translateY(-1px)}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.proj-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:all 0.25s;position:relative;overflow:hidden;cursor:default}
+.proj-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--pd),var(--cyan))}
+.proj-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,0.4)}
+.proj-num{font-size:0.72rem;color:var(--text3);font-weight:600;letter-spacing:0.1em;margin-bottom:0.5rem}
+.proj-tag{display:inline-block;background:var(--glow);border:1px solid var(--border2);border-radius:999px;padding:0.2rem 0.7rem;font-size:0.72rem;color:var(--pl);margin-bottom:0.75rem}
+.proj-title{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.5rem}
+.proj-desc{color:var(--text2);font-size:0.83rem;line-height:1.6;margin-bottom:1rem}
+.proj-techs{display:flex;gap:0.4rem;flex-wrap:wrap}
+.tech-pill{background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.2);border-radius:4px;padding:0.15rem 0.55rem;font-size:0.72rem;color:var(--pl);font-weight:500}
+.proj-link{display:inline-flex;align-items:center;gap:0.4rem;color:var(--pl);font-size:0.8rem;font-weight:500;text-decoration:none;margin-top:1rem;transition:gap 0.2s}
+.proj-link:hover{gap:0.7rem}
+
+/* SKILLS */
+.skills-categories{display:flex;flex-direction:column;gap:2rem}
+.skill-cat-title{font-size:0.72rem;font-weight:700;color:var(--pl);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+.skill-cat-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.skill-pills{display:flex;flex-wrap:wrap;gap:0.75rem}
+.skill-pill{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:0.7rem 1rem;display:flex;align-items:center;gap:0.6rem;transition:all 0.2s;cursor:default}
+.skill-pill:hover{border-color:var(--border2);background:var(--glow);transform:translateY(-2px)}
+.skill-pill-icon{font-size:1.2rem}
+.skill-pill-name{font-size:0.83rem;font-weight:500}
+
+/* CONTACT */
+.contact-intro{color:var(--text2);font-size:0.95rem;line-height:1.7;max-width:500px;margin-bottom:2rem}
+.contact-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem}
+.contact-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.25rem;display:flex;align-items:center;gap:1rem;transition:all 0.2s;text-decoration:none;color:inherit}
+.contact-card:hover{border-color:var(--border2);background:var(--glow);transform:translateY(-2px)}
+.cc-icon{width:42px;height:42px;background:var(--glow);border:1px solid var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.cc-label{font-size:0.75rem;color:var(--text3);margin-bottom:0.2rem}
+.cc-val{font-size:0.88rem;font-weight:500}
+.contact-cta{background:linear-gradient(135deg,var(--pd),var(--p));border-radius:14px;padding:2rem;text-align:center}
+.cta-title{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:0.5rem}
+.cta-sub{font-size:0.88rem;opacity:0.8;margin-bottom:1.25rem}
+.cta-btn{display:inline-block;background:#fff;color:var(--pd);padding:0.7rem 1.75rem;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;transition:all 0.2s}
+.cta-btn:hover{transform:scale(1.03)}
+
+footer{text-align:center;padding:1.5rem;color:var(--text3);font-size:0.8rem;border-top:1px solid var(--border)}
+footer span{color:var(--pl);font-weight:500}
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="avatar-wrap">
+    <div class="avatar">SKY</div>
+    <div class="avatar-ring"></div>
+  </div>
+  <div class="status-badge"><span class="status-dot"></span> Open to Work</div>
+  <div class="sidebar-name">Shubham Kumar Yadav</div>
+  <div class="sidebar-role">Full Stack Java Developer</div>
+  <div class="sidebar-info">
+    <div class="info-item"><span class="info-icon">📧</span><span class="info-text">shubhamy1024@gmail.com</span></div>
+    <div class="info-item"><span class="info-icon">📍</span><span class="info-text">Malad West, Mumbai</span></div>
+    <div class="info-item"><span class="info-icon">🎓</span><span class="info-text">B.Tech CSE, 2025</span></div>
+  </div>
+  <nav class="nav-links">
+    <a href="#about" class="nav-link active"><span class="nav-icon">👤</span> About</a>
+    <a href="#resume" class="nav-link"><span class="nav-icon">📄</span> Resume</a>
+    <a href="#projects" class="nav-link"><span class="nav-icon">🚀</span> Projects</a>
+    <a href="#skills" class="nav-link"><span class="nav-icon">⚡</span> Skills</a>
+    <a href="#contact" class="nav-link"><span class="nav-icon">💬</span> Contact</a>
+  </nav>
+  <div class="social-links">
+    <a href="https://github.com/shubham-yadav024" class="social-btn" target="_blank">🐙</a>
+    <a href="mailto:shubhamy1024@gmail.com" class="social-btn">📧</a>
+    <a href="#contact" class="social-btn">💼</a>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="sec-eyebrow">Welcome to my portfolio</div>
+  <h1 class="sec-title">Hi, I'm <span>Shubham</span> 👋</h1>
+  <div class="sec-line"></div>
+
+  <div class="typing-wrap">
+    <div class="typing-label">I specialize in —</div>
+    <div class="typing-text" id="typing"></div>
+  </div>
+
+  <p class="about-desc">
+    A passionate Full Stack Java Developer from Mumbai with expertise in building robust, scalable web applications. I love turning complex problems into clean, efficient solutions — from backend APIs with Spring Boot to interactive frontends and database-driven systems.<br><br>
+    Currently seeking opportunities to apply my skills in a professional team environment and contribute to impactful digital products.
+  </p>
+
+  <div class="what-grid">
+    <div class="what-card">
+      <div class="what-icon">☕</div>
+      <div class="what-title">Backend Development</div>
+      <div class="what-desc">Building robust REST APIs and server-side logic using Java, Spring Boot, Node.js and Express.</div>
+    </div>
+    <div class="what-card">
+      <div class="what-icon">🌐</div>
+      <div class="what-title">Frontend Development</div>
+      <div class="what-desc">Crafting responsive, user-friendly interfaces with HTML, CSS, JavaScript, Bootstrap and jQuery.</div>
+    </div>
+    <div class="what-card">
+      <div class="what-icon">🗄️</div>
+      <div class="what-title">Database Management</div>
+      <div class="what-desc">Designing and managing databases using SQL, PostgreSQL, and Supabase for scalable applications.</div>
+    </div>
+    <div class="what-card">
+      <div class="what-icon">🚀</div>
+      <div class="what-title">Deployment & DevOps</div>
+      <div class="what-desc">Deploying and managing applications on Vercel, Render with Git/GitHub version control workflows.</div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-n">3+</div><div class="stat-l">Projects Built</div></div>
+    <div class="stat-box"><div class="stat-n">17+</div><div class="stat-l">Technologies</div></div>
+    <div class="stat-box"><div class="stat-n">2025</div><div class="stat-l">B.Tech Graduate</div></div>
+    <div class="stat-box"><div class="stat-n">100%</div><div class="stat-l">Dedication</div></div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section class="section" id="resume">
+  <div class="sec-eyebrow">My Journey</div>
+  <h2 class="sec-title">Resume & <span>Experience</span></h2>
+  <div class="sec-line"></div>
+
+  <div class="resume-grid">
+    <div class="resume-col">
+      <h3><span>🎓</span> Education</h3>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2021 — 2025</div>
+          <div class="tl-title">B.Tech — Computer Science Engineering</div>
+          <div class="tl-sub">BBS College of Engineering & Technology</div>
+          <div class="tl-desc">Focused on software development, data structures, algorithms, and modern web technologies.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">12th — Intermediate</div>
+          <div class="tl-title">Higher Secondary Education</div>
+          <div class="tl-sub">RMIC Inter College, Amara, Jaunpur, UP</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">10th — Secondary</div>
+          <div class="tl-title">High School</div>
+          <div class="tl-sub">S N M V Tilaura, Jaunpur, UP</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:2rem"><span>💼</span> Experience</h3>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">Present</div>
+          <div class="tl-title">Full Stack Developer (Freelance)</div>
+          <div class="tl-sub">Self-employed, Mumbai</div>
+          <div class="tl-desc">Building real-world web applications including task management systems, hotel management, and restaurant POS solutions.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">Ongoing</div>
+          <div class="tl-title">Continuous Learner</div>
+          <div class="tl-sub">Self-development</div>
+          <div class="tl-desc">Constantly expanding skills — currently deepening knowledge in Spring Boot microservices and PostgreSQL.</div>
+        </div>
+      </div>
+
+      <a href="#" class="dl-btn">📥 Download Resume</a>
+    </div>
+
+    <div class="resume-col">
+      <h3><span>📊</span> Skill Proficiency</h3>
+      <div class="skill-bars">
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Java & Spring Boot</span><span class="skill-bar-pct">85%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">JavaScript / Node.js</span><span class="skill-bar-pct">80%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">SQL & PostgreSQL</span><span class="skill-bar-pct">82%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">HTML / CSS / Bootstrap</span><span class="skill-bar-pct">88%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Express.js & REST APIs</span><span class="skill-bar-pct">75%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Supabase & Backend-as-a-Service</span><span class="skill-bar-pct">78%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Git & GitHub</span><span class="skill-bar-pct">83%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:83%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Deployment (Vercel / Render)</span><span class="skill-bar-pct">80%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="sec-eyebrow">What I've Built</div>
+  <h2 class="sec-title">My <span>Projects</span></h2>
+  <div class="sec-line"></div>
+
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="proj-num">PROJECT 01</div>
+      <div class="proj-tag">Task Management</div>
+      <div class="proj-title">Pushp TaskFlow</div>
+      <p class="proj-desc">A full-featured task management web app with real-time attendance tracking, work session management, team collaboration, and a secure RLS-protected Supabase backend. Features a beautiful admin dashboard with analytics.</p>
+      <div class="proj-techs">
+        <span class="tech-pill">JavaScript</span>
+        <span class="tech-pill">Supabase</span>
+        <span class="tech-pill">PostgreSQL</span>
+        <span class="tech-pill">HTML/CSS</span>
+        <span class="tech-pill">Bootstrap</span>
+      </div>
+      <a href="#" class="proj-link">View Project →</a>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-num">PROJECT 02</div>
+      <div class="proj-tag">Hospitality Tech</div>
+      <div class="proj-title">Hotel Management System</div>
+      <p class="proj-desc">A comprehensive hotel management web application for room booking, check-in/check-out, billing, and guest management. Streamlines hotel operations with an intuitive admin dashboard and real-time room availability.</p>
+      <div class="proj-techs">
+        <span class="tech-pill">Java</span>
+        <span class="tech-pill">Spring Boot</span>
+        <span class="tech-pill">SQL</span>
+        <span class="tech-pill">Bootstrap</span>
+        <span class="tech-pill">jQuery</span>
+      </div>
+      <a href="#" class="proj-link">View Project →</a>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-num">PROJECT 03</div>
+      <div class="proj-tag">Restaurant Tech</div>
+      <div class="proj-title">Bhojnam Restaurant POS</div>
+      <p class="proj-desc">A PetPooja-inspired Point of Sale system for restaurants. Features menu management, order processing, billing, KOT generation, table management, and detailed sales reports — all in one seamless interface.</p>
+      <div class="proj-techs">
+        <span class="tech-pill">Java</span>
+        <span class="tech-pill">Spring Boot</span>
+        <span class="tech-pill">PostgreSQL</span>
+        <span class="tech-pill">jQuery</span>
+        <span class="tech-pill">Bootstrap</span>
+      </div>
+      <a href="#" class="proj-link">View Project →</a>
+    </div>
+
+    <div class="proj-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-style:dashed;opacity:0.5;cursor:default">
+      <div style="font-size:2.5rem;margin-bottom:0.75rem">⚡</div>
+      <div class="proj-title">More Coming Soon</div>
+      <p class="proj-desc">Always building something new. Stay tuned for upcoming projects!</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="sec-eyebrow">Tech Stack</div>
+  <h2 class="sec-title">My <span>Skills</span></h2>
+  <div class="sec-line"></div>
+
+  <div class="skills-categories">
+    <div>
+      <div class="skill-cat-title">Languages & Frameworks</div>
+      <div class="skill-pills">
+        <div class="skill-pill"><span class="skill-pill-icon">☕</span><span class="skill-pill-name">Java</span></div>
+        <div class="skill-pill"><span class="skill-pill-icon">🍃</span><span class="skill-pill-name">Spring Boot</span></div>
+        <div class="skill-pill"><span class="skill-pill-icon">💚</span><span class="skill-pill-name">Node.js</span></div>
+        <div class="skill-pill"><span class="skill-pill-icon">🚂</span><span class="skill-pill-name">Express.js</span></div>
+        <div class="skill-pill"><span class="skill-pill-icon">⚡</span><span class="skill-pill-name">JavaScript</span></div>
+        <div class="skill-pill"><span class="skill-pill-icon">💲</span><span class="skill-pill-name">jQuery</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-cat-title">Frontend</div>
+      <div class="skill-pills">
+        <div class="skill-pill"><span class="skill-pill-icon">🌐</span><span class="skill-pill-name">HTML5</span></div>
+        <div class="skill-pill"><span class="skill-pill-icon">🎨</span><span class="skill-pill-name">CSS3</span></div>
+        <div class="skill-pill"><span class="skill-pill-icon">🅱️</span><span class="skill-pill-name">Bootstrap</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-cat-title">Database & Backend Services</div>
+      <div class="skill-pills">
+        <div class="skill-pill"><span class="skill-pill-icon">🗄️</span><span class="skill-pill-name">SQL</span></div>
+        <div class="skill-pill"><span class="skill-pill-icon">🐘</span><span class="skill-pill-name">PostgreSQL</span></div>
+        <div class="skill-pill"><span class="skill-pill-icon">⚡</span><span class="skill-pill-name">Supabase</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-cat-title">Tools & Deployment</div>
+      <div class="skill-pills">
+        <div class="skill-pill"><span class="skill-pill-icon">▲</span><span class="skill-pill-name">Vercel</span></div>
+        <div class="skill-pill"><span class="skill-pill-icon">🟣</span><span class="skill-pill-name">Render</span></div>
+        <div class="skill-pill"><span class="skill-pill-icon">🔧</span><span class="skill-pill-name">Git</span></div>
+        <div class="skill-pill"><span class="skill-pill-icon">🐙</span><span class="skill-pill-name">GitHub</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="sec-eyebrow">Get In Touch</div>
+  <h2 class="sec-title">Contact <span>Me</span></h2>
+  <div class="sec-line"></div>
+
+  <p class="contact-intro">I'm currently open to full-time opportunities, freelance projects, and collaborations. Feel free to reach out — I'll get back to you as soon as possible!</p>
+
+  <div class="contact-cards">
+    <a href="mailto:shubhamy1024@gmail.com" class="contact-card">
+      <div class="cc-icon">📧</div>
+      <div><div class="cc-label">Email</div><div class="cc-val">shubhamy1024@gmail.com</div></div>
+    </a>
+    <a href="https://github.com/shubham-yadav024" class="contact-card" target="_blank">
+      <div class="cc-icon">🐙</div>
+      <div><div class="cc-label">GitHub</div><div class="cc-val">github.com/shubham-yadav024</div></div>
+    </a>
+    <div class="contact-card">
+      <div class="cc-icon">📍</div>
+      <div><div class="cc-label">Location</div><div class="cc-val">Malad West, Mumbai</div></div>
+    </div>
+    <div class="contact-card">
+      <div class="cc-icon">💼</div>
+      <div><div class="cc-label">Status</div><div class="cc-val" style="color:var(--green)">Open to Work ✓</div></div>
+    </div>
+  </div>
+
+  <div class="contact-cta">
+    <div class="cta-title">Let's build something amazing together! 🚀</div>
+    <div class="cta-sub">Have a project in mind? Let's talk about it.</div>
+    <a href="mailto:shubhamy1024@gmail.com" class="cta-btn">Send me an email →</a>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & Built with ❤️ by <span>Shubham Kumar Yadav</span> • 2025</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+// Typing effect
+const roles = ['Full Stack Java Developer','Backend Engineer','Spring Boot Specialist','SQL & PostgreSQL Expert','REST API Developer'];
+let ri=0,ci=0,deleting=false;
+const el=document.getElementById('typing');
+function type(){
+  const word=roles[ri];
+  el.innerHTML=word.substring(0,ci)+'<span class="cursor"></span>';
+  if(!deleting){
+    if(ci<word.length){ci++;setTimeout(type,80)}
+    else{setTimeout(()=>{deleting=true;type()},1800)}
+  } else {
+    if(ci>0){ci--;setTimeout(type,40)}
+    else{deleting=false;ri=(ri+1)%roles.length;setTimeout(type,400)}
+  }
+}
+type();
+
+// Active nav on scroll
+const sections=document.querySelectorAll('.section');
+const navLinks=document.querySelectorAll('.nav-link');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-200)cur=s.id});
+  navLinks.forEach(l=>{
+    l.classList.remove('active');
+    if(l.getAttribute('href')==='#'+cur)l.classList.add('active');
+  });
+});
+
+// Animate skill bars on scroll
+const bars=document.querySelectorAll('.skill-bar-fill');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.style.width}});
+},{threshold:0.3});
+bars.forEach(b=>obs.observe(b));
+</script>
+</body>
+</html>
